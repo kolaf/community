@@ -29,15 +29,15 @@ go <user.navigation_step>+: user.perform_navigation_steps(navigation_step_list)
 go line start | head: edit.line_start()
 go line end | tail: edit.line_end()
 
-go way left:
+(go way left | latch):
     edit.line_start()
     edit.line_start()
-go way right: edit.line_end()
+(go way right | ratch): edit.line_end()
 go way up: edit.file_start()
 go way down: edit.file_end()
 
-go top: edit.file_start()
-go bottom: edit.file_end()
+(go top | north): edit.file_start()
+(go bottom | south): edit.file_end()
 
 go page up: edit.page_up()
 go page down: edit.page_down()
@@ -75,7 +75,7 @@ padding: user.insert_between(" ", " ")
     insert(" ")
 
 # Undo/redo
-undo that: edit.undo()
+(undo that | nope): edit.undo()
 redo that: edit.redo()
 
 # Save

@@ -68,6 +68,7 @@ wrap switch: user.vscode("editor.action.toggleWordWrap")
 zen switch: user.vscode("workbench.action.toggleZenMode")
 
 # File Commands
+file recent: key(ctrl-p) 
 file hunt [<user.text>]:
     user.vscode("workbench.action.quickOpen")
     sleep(50ms)
@@ -288,3 +289,6 @@ cell run: user.vscode("notebook.cell.execute")
 
 install local: user.vscode("workbench.extensions.action.installVSIX")
 preview markdown: user.vscode("markdown.showPreview")
+
+python run: user.vscode("python.execInTerminal")
+python debug: user.vscode("debugpy.debugInTerminal")

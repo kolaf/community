@@ -47,7 +47,7 @@ ctx.lists["user.code_type"] = {
     "integer": "int",
     "string": "str",
     "none": "None",
-    "dick": "Dict",
+    "dick": "dict",
     "float": "float",
     "any": "Any",
     "tuple": "Tuple",
@@ -57,7 +57,7 @@ ctx.lists["user.code_type"] = {
     "bytes": "bytes",
     "sequence": "Sequence",
     "callable": "Callable",
-    "list": "List",
+    "list": "list",
     "no return": "NoReturn",
 }
 
@@ -145,8 +145,7 @@ exception_list = [
 ]
 mod.list("python_exception", desc="python exceptions")
 ctx.lists["user.python_exception"] = {
-    " ".join(re.findall("[A-Z][^A-Z]*", exception)).lower(): exception
-    for exception in exception_list
+    " ".join(re.findall("[A-Z][^A-Z]*", exception)).lower(): exception for exception in exception_list
 }
 
 operators = Operators(
@@ -233,9 +232,7 @@ class UserActions:
     def code_private_function(text: str):
         """Inserts private function declaration"""
         result = "def _{}():".format(
-            actions.user.formatted_text(
-                text, settings.get("user.code_private_function_formatter")
-            )
+            actions.user.formatted_text(text, settings.get("user.code_private_function_formatter"))
         )
 
         actions.user.paste(result)
@@ -244,9 +241,7 @@ class UserActions:
 
     def code_public_function(text: str):
         result = "def {}():".format(
-            actions.user.formatted_text(
-                text, settings.get("user.code_public_function_formatter")
-            )
+            actions.user.formatted_text(text, settings.get("user.code_public_function_formatter"))
         )
         actions.user.paste(result)
         actions.edit.left()

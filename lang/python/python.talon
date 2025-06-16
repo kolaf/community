@@ -32,6 +32,7 @@ state try: "try:\n"
 state except: "except "
 state raise: "raise "
 self taught: "self."
+shelf: "self"
 pie test: "pytest"
 state past: "pass"
 

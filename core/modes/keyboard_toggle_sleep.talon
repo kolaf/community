@@ -1,0 +1,1 @@
+key(ctrl-pageup): speech.toggle()

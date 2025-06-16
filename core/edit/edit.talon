@@ -16,23 +16,23 @@ scroll down: edit.page_down()
 go word left: edit.word_left()
 go word right: edit.word_right()
 
-go left: edit.left()
-go right: edit.right()
-go up: edit.up()
-go down: edit.down()
+(go left | lease): edit.left()
+(go right | ross): edit.right()
+(go up | sauce): edit.up()
+(go down | dunce): edit.down()
 
 go line start | head: edit.line_start()
 go line end | tail: edit.line_end()
 
-go way left:
+(go way left | latch):
     edit.line_start()
     edit.line_start()
-go way right: edit.line_end()
+(go way right | ratch): edit.line_end()
 go way up: edit.file_start()
 go way down: edit.file_end()
 
-go top: edit.file_start()
-go bottom: edit.file_end()
+(go top | north): edit.file_start()
+(go bottom | south): edit.file_end()
 
 go page up: edit.page_up()
 go page down: edit.page_down()
@@ -179,7 +179,7 @@ new line below | slap: edit.line_insert_down()
     insert(" ")
 
 # Undo/redo
-undo that: edit.undo()
+(undo that | nope): edit.undo()
 redo that: edit.redo()
 
 # Save

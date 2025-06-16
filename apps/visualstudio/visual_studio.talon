@@ -6,6 +6,7 @@ tag(): user.line_commands
 tag(): user.find_and_replace
 tag(): user.multiple_cursors
 #multiple_cursor.py support end
+search: key(ctrl-f)
 
 # Panels
 panel solution: key(ctrl-alt-l)
@@ -31,22 +32,26 @@ file hunt [<user.text>]:
     key(ctrl-shift-t)
     insert(text or "")
 file create: key(ctrl-n)
+file recent: key(ctrl-p) 
 #file open folder:
 file rename: key(ctrl-[ s f2)
 file reveal: key(ctrl-[ s)
+
+symbol hunt: key(ctrl-t) 
 
 # Language Features
 hint show: key(ctrl-shift-space)
 definition show: key(f12)
 definition peek: key(alt-f12)
 references find: key(shift-f12)
+format document: key(shift-alt-f)
 format that: key(ctrl-k ctrl-d)
 format selection: key(ctrl-k ctrl-f)
 imports fix: key(ctrl-r ctrl-g)
 
-# problem next:
-# problem last:
-# problem fix:
+problem next: key(f8)
+problem last: key(ctrl-f8) 
+problem fix: key(ctrl-.)
 refactor field: key(ctrl-r ctrl-e)
 refactor interface: key(ctrl-r ctrl-i)
 refactor method: key(ctrl-r ctrl-m)

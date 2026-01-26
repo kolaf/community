@@ -1,5 +1,6 @@
 mode: command
 mode: dictation
+mode: mixed
 -
 ^dictation mode$:
     mode.disable("sleep")

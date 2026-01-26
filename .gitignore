@@ -16,3 +16,7 @@ __pycache__
 # Vim (from https://github.com/github/gitignore/blob/main/Global/Vim.gitignore)
 [._]*.swp
 core/system_paths-XA-IMC-0890388.talon-list
+core/system_paths-Kolaf.talon-list
+settings/abbreviations.csv
+settings/file_extensions.csv
+settings/words_to_replace.csv

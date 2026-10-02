@@ -5,7 +5,8 @@ merging upstream community never conflicts. Clone this fork into `user/` on any 
 
 ## Contents
 
-- `personal/`: the wake key (`Ctrl+PageUp` toggles speech), spoken wake commands disabled, `drowse`, and the `shock` key.
+- `personal/`: the wake key (`Ctrl+PageUp` toggles speech), spoken wake commands disabled, `drowse`, the `shock` key, and
+  `sleep.py` (Talon starts asleep: it calls `speech.disable()` when Talon is ready; note that reloading it puts Talon to sleep).
   The wake overrides use community's context plus the tag `user.disable_voice_wake`, so they win. To get voice wake
   back, delete the `tag()` line in `wake_key_and_tag.talon`.
 - `hv/`: the voice shell front end (`hermes <request>`, `hermes go`, `grab files`). It types `hv ...` into a terminal, so
@@ -23,14 +24,14 @@ errors and its registry contains the commands. Not checked: the spoken behaviour
 1. Install Talon, then in its user folder (`%APPDATA%\talon\user` on Windows, `~/.talon/user` on Linux):
    `git clone https://github.com/kolaf/community.git`, then `cd community`, then
    `git remote add upstream https://github.com/talonhub/community.git`.
-2. The other packages (separate repos; versions as found on 2 October 2026, all old):
+2. The other packages (separate repos; versions as found on 2 October 2026, both old):
    - `cursorless-talon` https://github.com/cursorless-dev/cursorless-talon.git (last commit 2024-02-21)
    - `rango-talon` https://github.com/david-tejada/rango-talon.git (2024-03-06)
-   - `talon-ai-tools` https://github.com/C-Loftus/talon-ai-tools.git (2024-03-08)
    - `cursorless-settings`: not a git repo; copy the folder.
    Check that the Cursorless Talon side matches the VS Code extension's version before relying on it.
-3. Machine-level files that are **not** in git: `user/settings.talon` (speech timeout), `user/sleep.py` (start asleep) and
-   `user/gpt_key.py` (an API key: never commit it; recreate it from 1Password).
+   `talon-ai-tools` is deliberately **not** used any more: its main job (rewrite the selected text from a spoken
+   instruction) is done by Handy's `edit` prompt, so the GPT key now lives in one place only (Handy's settings).
+3. Machine-level file that is **not** in git: `user/settings.talon` (speech timeout). Keep API keys out of this repo.
 
 ## Updating community from upstream
 

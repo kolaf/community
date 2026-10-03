@@ -86,11 +86,11 @@ class Actions:
         """Run the selection (or, with nothing selected, the last dictation) through a Handy transform prompt"""
         run_handy(["--transform", prompt_id])
 
-    def kolaf_handy_reply():
-        """Copy the selected message, then dictate the reply with Handy's reply prompt (stop with your Handy key)"""
+    def kolaf_handy_dictate_with(prompt_id: str):
+        """Copy the selection, then dictate with a Handy prompt for this one dictation (stop with your Handy key)"""
         actions.edit.copy()
         actions.sleep("200ms")
-        run_handy(["--use-prompt-once", "reply", "--toggle-post-process"])
+        run_handy(["--use-prompt-once", prompt_id, "--toggle-post-process"])
 
     def kolaf_handy_mute_now():
         """Is Handy recording right now (for debugging)"""

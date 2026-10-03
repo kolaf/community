@@ -14,4 +14,8 @@ summarize that: user.kolaf_handy_transform("t_summary")
 
 # Select a message, say this, then dictate the reply. Talon switches itself off while Handy records; stop with your
 # Handy key, and the reply (shaped by the reply prompt, with the message as context) is pasted.
-reply to this: user.kolaf_handy_reply()
+reply to this: user.kolaf_handy_dictate_with("reply")
+
+# Select text, say this, then speak what to change ("shorter and friendlier, mention Thursday"). Stop with your Handy
+# key; the result replaces the selection. For free-form changes; the fixed "make that ..." commands above are faster.
+edit this: user.kolaf_handy_dictate_with("edit")

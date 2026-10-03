@@ -14,6 +14,8 @@ from talon import Module, actions, cron, settings
 
 mod = Module()
 
+mod.list("kolaf_handy_prompt", desc="Spoken names of the Handy prompts that \"redo as ...\" can use")
+
 mod.setting(
     "kolaf_handy_path",
     type=str,

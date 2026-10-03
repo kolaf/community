@@ -3,6 +3,7 @@ app: windows_terminal
 # The folder the shell is in, its sub-folders and files, and zoxide's folders, are known through the state file
 # (terminal_state.py). Say "folders" to see the numbered list.
 
+terminal help: user.kolaf_terminal_help()
 folders: user.kolaf_terminal_folders_toggle()
 folders hide: user.kolaf_terminal_folders_toggle()
 

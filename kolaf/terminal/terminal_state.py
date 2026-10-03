@@ -6,6 +6,7 @@ so no window-title parsing and no wsl.exe calls are needed. This module turns it
 (sub-folders, files, zoxide folders) that are active in Windows Terminal, plus the actions the commands use.
 The most recently used shell wins when several terminals are open.
 """
+import os
 import shlex
 from pathlib import Path
 
@@ -15,6 +16,15 @@ mod = Module()
 ctx = Context()
 ctx.matches = r"""
 app: windows_terminal
+"""
+
+# Beats the community WSL actions (apps/wsl/wsl.py) in the same tab.
+ctx_wsl = Context()
+ctx_wsl.matches = r"""
+app: windows_terminal
+title: /ubuntu|wsl|@/i
+tag: user.wsl
+tag: terminal
 """
 
 mod.tag("kolaf_yazi", desc="The yazi file manager is running in the terminal (set by the shell wrapper 'y')")
@@ -117,6 +127,17 @@ def quote(name: str) -> str:
     return shlex.quote(name)
 
 
+@ctx_wsl.action_class("user")
+class WslActions:
+    def terminal_kill_all():
+        # The community version also types "y" and Enter (for Windows' "Terminate batch job?"). In bash that would run
+        # the command "y", which is the yazi wrapper here.
+        actions.key("ctrl-c")
+
+
+HELP_FILE = Path(__file__).with_name("README.md")
+
+
 @imgui.open(y=10, x=900)
 def folders_gui(gui: imgui.GUI):
     gui.text(f"Folders in {_cwd}")
@@ -174,6 +195,10 @@ class Actions:
         """Open the yazi file manager in a sub-folder"""
         actions.insert(f"y -- {quote(name)}")
         actions.key("enter")
+
+    def kolaf_terminal_help():
+        """Open the summary of the terminal voice commands"""
+        os.startfile(str(HELP_FILE))
 
     def kolaf_terminal_folders_toggle():
         """Show or hide the numbered list of sub-folders"""

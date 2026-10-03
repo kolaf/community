@@ -11,7 +11,7 @@ merging upstream community never conflicts. Clone this fork into `user/` on any 
   back, delete the `tag()` line in `wake_key_and_tag.talon`.
 - `hv/`: the voice shell front end (`hermes <request>`, `hermes go`, `grab files`). It types `hv ...` into a terminal, so
   it needs the `hv` script on that machine (`fork/voice-shell/hv` in the `kolaf/Handy` repo, symlinked to `~/.local/bin/hv`).
-- `terminal/`: voice navigation for the shell in Windows Terminal (WSL). The shell hook `talon-terminal.bash`
+- `terminal/`: **all terminal commands are summarized in `terminal/README.md`** (say "terminal help" to open it). Voice navigation for the shell in Windows Terminal (WSL). The shell hook `talon-terminal.bash`
   (installed by the dotfiles Ansible playbook, sourced from `.bashrc`) writes the current folder, its sub-folders and files
   and zoxide's folders to `%USERPROFILE%\.cache\hv\terminal-state.txt` after every prompt; `terminal_state.py` turns that into
   spoken lists. Commands: `into <folder>` / `into numb <n>`, `pick <folder>` / `pick file <file>` (types the quoted name),

@@ -16,7 +16,11 @@ merging upstream community never conflicts. Clone this fork into `user/` on any 
   and zoxide's folders to `%USERPROFILE%\.cache\hv\terminal-state.txt` after every prompt; `terminal_state.py` turns that into
   spoken lists. Commands: `into <folder>` / `into numb <n>`, `pick <folder>` / `pick file <file>` (types the quoted name),
   `folders` (numbered list), `jump <name>` / `jump list` / `jump back` (zoxide), `fuzzy file|folder|history [text]` (fzf).
-  No title parsing and no wsl.exe calls. The most recently used shell wins when several are open.
+  Also `out of [n]` (go up), `history [words]` (atuin), `history list <words>`, `jump show`, picker keys (`choose it`,
+  `edit it`, `result next|back`, `cancel search`), and the yazi file manager: `file browser` / `browse <folder>` run the shell
+  function `y`; while it runs, `yazi.talon` (up, down, parent, open it, select, copy it, cut it, paste it, trash it, find,
+  search name, fuzzy jump, zoxide jump, quit yazi ...) is active. No title parsing and no wsl.exe calls. The most recently
+  used shell wins when several are open.
 - `handy-bridge/`: Talon commands for Handy (one key that starts or stops a dictation and mutes Talon, language and
   prompt commands). **Disabled** (`*.disabled`) because it is untested and mutes Talon if Handy cannot be started.
   To enable: rename both files (drop `.disabled`) and set the Handy path, e.g. in a `.talon` file:

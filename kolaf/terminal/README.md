@@ -30,7 +30,23 @@ build, but the spoken behaviour is untested. Report what does not work.
 | `katie root` | `cd /` (community) |
 | `lisa [dir] [<text>]` | `ls <text>` (community) |
 | `lisa all` | `ls -a` (community; uses the Linux flavour thanks to `wsl.talon`) |
-| `go <system path>` / `path <system path>` | community: **Windows** paths (Desktop, Documents ...); not useful inside WSL |
+| `go <name>` | jump to the folder zoxide knows by that name, like `jump <name>` (kolaf; replaces the community *go <system path>*, which used Windows folders) |
+| `path <name>` | type the full path, quoted, of the best-ranked zoxide folder with that name (kolaf; replaces the community *path <system path>*) |
+
+## Community folder pickers (work in WSL through the state file)
+
+The community file-manager commands are active in this terminal. They read the folder from the shell hook, so there is no
+`wsl.exe` call and no window-title parsing.
+
+| Say | Does |
+|---|---|
+| `manager show` / `manager close` / `manager refresh` | show / hide / refresh the numbered folder and file lists |
+| `follow <folder>` / `follow numb <n>` | `cd` into that folder (community; `into` is the lighter kolaf version) |
+| `go parent` / `daddy` | up one folder |
+| `folder next` / `folder last`, `file next` / `file last` | page through long lists |
+
+The community `open <file>`, `select file ...` and `select folder ...` have no terminal implementation and do nothing here;
+use `pick file <file>` and then type what you want to do with it.
 
 ## Files and names
 

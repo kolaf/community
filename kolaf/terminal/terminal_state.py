@@ -39,31 +39,57 @@ PAGE = 20
 
 _mtime = None
 _cwd = ""
+_distro = ""
 _dirs: list = []
 _files: list = []
 _jump: list = []
+_jump_paths: dict = {}
 _mode = ""
 
 
 def parse_state(text: str):
-    """Returns (cwd, dirs, files, jump_paths) from the state file text; unknown or damaged input gives empty results."""
+    """Returns (cwd, dirs, files, jump_paths, distro) from the state file text; unknown or damaged input gives empty results."""
     lines = text.splitlines()
     if not lines or lines[0] != "v1":
-        return "", [], [], []
-    cwd, dirs, files, jump = "", [], [], []
+        return "", [], [], [], ""
+    cwd, dirs, files, jump, distro = "", [], [], [], ""
     for line in lines[1:]:
         kind, _, value = line.partition("\t")
         if not value:
             continue
         if kind == "cwd":
             cwd = value
+        elif kind == "distro":
+            distro = value
         elif kind == "d":
             dirs.append(value)
         elif kind == "f":
             files.append(value)
         elif kind == "z":
             jump.append(value)
-    return cwd, dirs, files, jump
+    return cwd, dirs, files, jump, distro
+
+
+def windows_path(cwd: str, distro: str) -> str:
+    """The Windows-side path of a WSL folder: /mnt/c/x -> C:\\x, /home/me -> \\\\wsl.localhost\\<distro>\\home\\me. Empty if unknown."""
+    if not cwd.startswith("/"):
+        return ""
+    parts = cwd.split("/")
+    if len(parts) >= 3 and parts[1] == "mnt" and len(parts[2]) == 1 and parts[2].isalpha():
+        return parts[2].upper() + ":\\" + "\\".join(parts[3:])
+    if not distro:
+        return ""
+    return "\\\\wsl.localhost\\" + distro + "\\" + "\\".join(p for p in parts if p)
+
+
+def paths_by_name(paths):
+    """Last path component -> the first (best ranked) full path that has it."""
+    result = {}
+    for path in paths:
+        name = path.rstrip("/").rsplit("/", 1)[-1]
+        if name:
+            result.setdefault(name, path)
+    return result
 
 
 def last_names(paths):
@@ -101,7 +127,7 @@ def refresh_mode():
 
 def refresh():
     """Cheap: one stat per call; the file is only read and the lists rebuilt when it changed."""
-    global _mtime, _cwd, _dirs, _files, _jump
+    global _mtime, _cwd, _distro, _dirs, _files, _jump, _jump_paths
     refresh_mode()
     try:
         mtime = STATE_FILE.stat().st_mtime_ns
@@ -114,8 +140,9 @@ def refresh():
     except OSError:
         return
     _mtime = mtime
-    _cwd, _dirs, _files, jump_paths = parse_state(text)
+    _cwd, _dirs, _files, jump_paths, _distro = parse_state(text)
     _jump = last_names(jump_paths)
+    _jump_paths = paths_by_name(jump_paths)
     ctx.lists["user.kolaf_dir"] = spoken(_dirs)
     ctx.lists["user.kolaf_file"] = spoken(_files)
     ctx.lists["user.kolaf_jump"] = spoken(_jump)
@@ -129,6 +156,12 @@ def quote(name: str) -> str:
 
 @ctx_wsl.action_class("user")
 class WslActions:
+    def file_manager_current_path():
+        # The community version asks WSL through wsl.exe on every window focus, which can stall Talon for seconds.
+        # The shell already told us where it is.
+        refresh()
+        return windows_path(_cwd, _distro)
+
     def terminal_kill_all():
         # The community version also types "y" and Enter (for Windows' "Terminate batch job?"). In bash that would run
         # the command "y", which is the yazi wrapper here.
@@ -172,6 +205,12 @@ class Actions:
     def kolaf_terminal_pick(name: str):
         """Type a file or folder name, quoted, at the cursor"""
         actions.insert(quote(name) + " ")
+
+    def kolaf_terminal_path(name: str):
+        """Type the full path of a folder zoxide knows (best ranked one with that name), quoted"""
+        path = _jump_paths.get(name)
+        if path:
+            actions.insert(quote(path) + " ")
 
     def kolaf_terminal_jump(query: str):
         """Jump with zoxide to the best match for the words"""

@@ -214,7 +214,9 @@ class Actions:
 
     def kolaf_terminal_jump(query: str):
         """Jump with zoxide to the best match for the words"""
-        actions.insert(f"z {quote(query)}")
+        # one argument per word: zoxide matches the words in order, so "handy talon" finds handy-talon
+        words = " ".join(quote(word) for word in query.split())
+        actions.insert(f"z {words}")
         actions.key("enter")
 
     def kolaf_terminal_press(keys: str, count: int = 1):

@@ -11,6 +11,12 @@ merging upstream community never conflicts. Clone this fork into `user/` on any 
   back, delete the `tag()` line in `wake_key_and_tag.talon`.
 - `hv/`: the voice shell front end (`hermes <request>`, `hermes go`, `grab files`). It types `hv ...` into a terminal, so
   it needs the `hv` script on that machine (`fork/voice-shell/hv` in the `kolaf/Handy` repo, symlinked to `~/.local/bin/hv`).
+- `terminal/`: voice navigation for the shell in Windows Terminal (WSL). The shell hook `talon-terminal.bash`
+  (installed by the dotfiles Ansible playbook, sourced from `.bashrc`) writes the current folder, its sub-folders and files
+  and zoxide's folders to `%USERPROFILE%\.cache\hv\terminal-state.txt` after every prompt; `terminal_state.py` turns that into
+  spoken lists. Commands: `into <folder>` / `into numb <n>`, `pick <folder>` / `pick file <file>` (types the quoted name),
+  `folders` (numbered list), `jump <name>` / `jump list` / `jump back` (zoxide), `fuzzy file|folder|history [text]` (fzf).
+  No title parsing and no wsl.exe calls. The most recently used shell wins when several are open.
 - `handy-bridge/`: Talon commands for Handy (one key that starts or stops a dictation and mutes Talon, language and
   prompt commands). **Disabled** (`*.disabled`) because it is untested and mutes Talon if Handy cannot be started.
   To enable: rename both files (drop `.disabled`) and set the Handy path, e.g. in a `.talon` file:

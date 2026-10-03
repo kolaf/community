@@ -1,0 +1,144 @@
+"""Voice navigation for a shell, driven by a small state file the shell writes after every prompt.
+
+The shell hook (dotfiles: talon-terminal.bash) writes %USERPROFILE%\\.cache\\hv\\terminal-state.txt:
+    v1 / cwd / sig / d <subfolder> / f <file> / z <folder zoxide knows>
+so no window-title parsing and no wsl.exe calls are needed. This module turns it into three lists
+(sub-folders, files, zoxide folders) that are active in Windows Terminal, plus the actions the commands use.
+The most recently used shell wins when several terminals are open.
+"""
+import shlex
+from pathlib import Path
+
+from talon import Context, Module, actions, cron, imgui
+
+mod = Module()
+ctx = Context()
+ctx.matches = r"""
+app: windows_terminal
+"""
+
+mod.list("kolaf_dir", desc="Sub-folders of the folder the shell is in")
+mod.list("kolaf_file", desc="Files in the folder the shell is in")
+mod.list("kolaf_jump", desc="Folders zoxide knows, by their last name")
+
+STATE_FILE = Path.home() / ".cache" / "hv" / "terminal-state.txt"
+WORDS_TO_EXCLUDE = ["and", "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "dot", "exe"]
+PAGE = 20
+
+_mtime = None
+_cwd = ""
+_dirs: list = []
+_files: list = []
+_jump: list = []
+
+
+def parse_state(text: str):
+    """Returns (cwd, dirs, files, jump_paths) from the state file text; unknown or damaged input gives empty results."""
+    lines = text.splitlines()
+    if not lines or lines[0] != "v1":
+        return "", [], [], []
+    cwd, dirs, files, jump = "", [], [], []
+    for line in lines[1:]:
+        kind, _, value = line.partition("\t")
+        if not value:
+            continue
+        if kind == "cwd":
+            cwd = value
+        elif kind == "d":
+            dirs.append(value)
+        elif kind == "f":
+            files.append(value)
+        elif kind == "z":
+            jump.append(value)
+    return cwd, dirs, files, jump
+
+
+def last_names(paths):
+    """Unique last path components of the folders zoxide knows, in the order given."""
+    seen, names = set(), []
+    for path in paths:
+        name = path.rstrip("/").rsplit("/", 1)[-1]
+        if name and name not in seen:
+            seen.add(name)
+            names.append(name)
+    return names
+
+
+def spoken(names):
+    if not names:
+        return {}
+    return actions.user.create_spoken_forms_from_list(names, words_to_exclude=WORDS_TO_EXCLUDE)
+
+
+def refresh():
+    """Cheap: one stat per call; the file is only read and the lists rebuilt when it changed."""
+    global _mtime, _cwd, _dirs, _files, _jump
+    try:
+        mtime = STATE_FILE.stat().st_mtime_ns
+    except OSError:
+        return
+    if mtime == _mtime:
+        return
+    try:
+        text = STATE_FILE.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return
+    _mtime = mtime
+    _cwd, _dirs, _files, jump_paths = parse_state(text)
+    _jump = last_names(jump_paths)
+    ctx.lists["user.kolaf_dir"] = spoken(_dirs)
+    ctx.lists["user.kolaf_file"] = spoken(_files)
+    ctx.lists["user.kolaf_jump"] = spoken(_jump)
+    if folders_gui.showing:
+        folders_gui.show()
+
+
+def quote(name: str) -> str:
+    return shlex.quote(name)
+
+
+@imgui.open(y=10, x=900)
+def folders_gui(gui: imgui.GUI):
+    gui.text(f"Folders in {_cwd}")
+    gui.line()
+    for index, name in enumerate(_dirs[:PAGE], start=1):
+        gui.text(f"{index}: {name}")
+    if len(_dirs) > PAGE:
+        gui.text(f"... and {len(_dirs) - PAGE} more")
+    gui.spacer()
+    if gui.button("Folders hide"):
+        folders_gui.hide()
+
+
+@mod.action_class
+class Actions:
+    def kolaf_terminal_cd(name: str):
+        """Change into a sub-folder of the shell's current folder"""
+        actions.insert(f"cd -- {quote(name)}")
+        actions.key("enter")
+
+    def kolaf_terminal_cd_number(number: int):
+        """Change into the numbered sub-folder shown by 'folders'"""
+        if 1 <= number <= len(_dirs):
+            actions.user.kolaf_terminal_cd(_dirs[number - 1])
+
+    def kolaf_terminal_pick(name: str):
+        """Type a file or folder name, quoted, at the cursor"""
+        actions.insert(quote(name) + " ")
+
+    def kolaf_terminal_jump(query: str):
+        """Jump with zoxide to the best match for the words"""
+        actions.insert(f"z {quote(query)}")
+        actions.key("enter")
+
+    def kolaf_terminal_folders_toggle():
+        """Show or hide the numbered list of sub-folders"""
+        if folders_gui.showing:
+            folders_gui.hide()
+        else:
+            refresh()
+            folders_gui.show()
+
+
+cron.interval("700ms", refresh)
+refresh()

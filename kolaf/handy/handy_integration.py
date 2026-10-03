@@ -92,6 +92,14 @@ class Actions:
         actions.sleep("200ms")
         run_handy(["--use-prompt-once", prompt_id, "--toggle-post-process"])
 
+    def kolaf_handy_redo(prompt_id: str):
+        """Replace the last dictation by the same recording processed again with another prompt"""
+        run_handy(["--redo-with", prompt_id])
+
+    def kolaf_handy_scratch():
+        """Delete the last dictation, if it is really the text before the cursor"""
+        run_handy(["--scratch-last"])
+
     def kolaf_handy_mute_now():
         """Is Handy recording right now (for debugging)"""
         return handy_is_recording()

@@ -12,6 +12,11 @@ translate that to english: user.kolaf_handy_transform("t_to_en")
 bullet that: user.kolaf_handy_transform("t_bullets")
 summarize that: user.kolaf_handy_transform("t_summary")
 
+# Undo and redo the last dictation. Handy checks that the text before the cursor really is the last dictation and does
+# nothing otherwise. "redo as" processes the original recording again (not the already formatted text).
+scratch dictation: user.kolaf_handy_scratch()
+redo as <user.kolaf_handy_prompt>: user.kolaf_handy_redo(kolaf_handy_prompt)
+
 # Select a message, say this, then dictate the reply. Talon switches itself off while Handy records; stop with your
 # Handy key, and the reply (shaped by the reply prompt, with the message as context) is pasted.
 reply to this: user.kolaf_handy_dictate_with("reply")

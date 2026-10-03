@@ -140,6 +140,8 @@ Also `anaconda ...` (conda commands: `anaconda environment list`, `anaconda acti
 | `translate that to norwegian` / `english` | translate and replace |
 | `bullet that` / `summarize that` | bullet list / short summary |
 | `edit this` | select text, say it, then speak the change you want ("shorter and friendlier, mention Thursday"); stop with your Handy key and the result replaces the selection |
+| `scratch dictation` | delete the last dictation (only if it is really the text before the cursor) |
+| `redo as email` / `message` / `note` / `meeting` / `document` / `formal` / `informal` / `simple` | process the last recording again with that prompt and replace the text |
 | `reply to this` | copy the selected message, then dictate the reply (stop with your Handy key); Talon is quiet while Handy records |
 | `learn this repo` | (in the terminal) add the project's names and terms to Handy's custom words |
 

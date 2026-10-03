@@ -1,0 +1,12 @@
+list: user.kolaf_handy_prompt
+-
+simple: simple
+plain: simple
+message: informal_message
+chat: informal_message
+email: email
+note: note
+meeting: meeting
+document: document
+formal: formal_text
+informal: informal_text

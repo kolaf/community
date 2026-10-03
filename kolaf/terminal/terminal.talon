@@ -4,6 +4,7 @@ app: windows_terminal
 # (terminal_state.py). Say "folders" to see the numbered list.
 
 terminal help: user.kolaf_terminal_help()
+learn this repo: user.kolaf_terminal_learn_repo()
 folders: user.kolaf_terminal_folders_toggle()
 folders hide: user.kolaf_terminal_folders_toggle()
 

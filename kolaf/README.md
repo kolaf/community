@@ -21,6 +21,11 @@ merging upstream community never conflicts. Clone this fork into `user/` on any 
   function `y`; while it runs, `yazi.talon` (up, down, parent, open it, select, copy it, cut it, paste it, trash it, find,
   search name, fuzzy jump, zoxide jump, quit yazi ...) is active. No title parsing and no wsl.exe calls. The most recently
   used shell wins when several are open.
+- `handy/`: Talon <-> Handy. Voice transforms ("make that formal|informal|shorter|fuller|clearer", "fix that up", "translate
+  that to norwegian|english", "bullet that", "summarize that") on the selection or the last dictation; "reply to this"
+  (copies the selected message and dictates the reply with the reply prompt; stop with your Handy key); and Talon switches its
+  speech off while Handy records (`user.kolaf_mute_during_handy`) so dictation is not taken for commands. Handy path:
+  `user.kolaf_handy_path` (default `D:/Handy/handy.exe`).
 - `handy-bridge/`: Talon commands for Handy (one key that starts or stops a dictation and mutes Talon, language and
   prompt commands). **Disabled** (`*.disabled`) because it is untested and mutes Talon if Handy cannot be started.
   To enable: rename both files (drop `.disabled`) and set the Handy path, e.g. in a `.talon` file:

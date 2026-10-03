@@ -237,6 +237,12 @@ class Actions:
         actions.insert(f"y -- {quote(name)}")
         actions.key("enter")
 
+    def kolaf_terminal_learn_repo():
+        """Add the vocabulary of the project in the shell's current folder to Handy's custom words"""
+        path = windows_path(_cwd, _distro)
+        if path:
+            actions.user.kolaf_handy_run(["--learn-repo", path])
+
     def kolaf_terminal_help():
         """Open the summary of the terminal voice commands"""
         os.startfile(str(HELP_FILE))

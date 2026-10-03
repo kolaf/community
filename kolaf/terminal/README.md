@@ -131,6 +131,17 @@ Also `anaconda ...` (conda commands: `anaconda environment list`, `anaconda acti
 | `clear screen` | clear the screen (Ctrl-L) |
 | `kill all` | Ctrl-C (kolaf: the community version also typed `y` Enter, which would start yazi here) |
 
+## Handy (kolaf/handy)
+
+| Say | Does |
+|---|---|
+| `make that formal` / `informal` / `shorter` / `fuller` / `clearer` | rewrite the selected text, or the last dictation, and replace it |
+| `fix that up` | spelling and grammar only |
+| `translate that to norwegian` / `english` | translate and replace |
+| `bullet that` / `summarize that` | bullet list / short summary |
+| `reply to this` | copy the selected message, then dictate the reply (stop with your Handy key); Talon is quiet while Handy records |
+| `learn this repo` | (in the terminal) add the project's names and terms to Handy's custom words |
+
 ## Hermes, the voice shell (kolaf/hv)
 
 | Say | Does |

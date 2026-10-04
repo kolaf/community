@@ -1,0 +1,7 @@
+list: user.kolaf_handy_model
+-
+norwegian: nb_ggml
+parakeet: parakeet
+whisper small: small
+whisper medium: medium
+whisper large: large

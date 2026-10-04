@@ -14,6 +14,7 @@ from talon import Module, actions, cron, settings
 
 mod = Module()
 
+mod.list("kolaf_handy_model", desc="Spoken names of speech models; the value is part of the model's name or id")
 mod.list("kolaf_handy_prompt", desc="Spoken names of the Handy prompts that \"redo as ...\" can use")
 
 mod.setting(
@@ -93,6 +94,14 @@ class Actions:
         actions.edit.copy()
         actions.sleep("200ms")
         run_handy(["--use-prompt-once", prompt_id, "--toggle-post-process"])
+
+    def kolaf_handy_set_model(name: str):
+        """Switch Handy's speech model; name is part of the model's name or id"""
+        run_handy(["--set-model", name])
+
+    def kolaf_handy_model_picker():
+        """Open Handy's numbered list of downloaded speech models"""
+        run_handy(["--model-picker"])
 
     def kolaf_handy_redo(prompt_id: str):
         """Replace the last dictation by the same recording processed again with another prompt"""

@@ -140,6 +140,8 @@ Also `anaconda ...` (conda commands: `anaconda environment list`, `anaconda acti
 | `translate that to norwegian` / `english` | translate and replace |
 | `bullet that` / `summarize that` | bullet list / short summary |
 | `edit this` | select text, say it, then speak the change you want ("shorter and friendlier, mention Thursday"); stop with your Handy key and the result replaces the selection |
+| `model <name>` | switch Handy's speech model, e.g. `model parakeet`, `model norwegian`, `model whisper small` (edit `handy/models.talon-list`; the model must be downloaded) |
+| `model picker` | numbered list of the downloaded models; say or press a number |
 | `scratch that` / `nope that` | **context-aware** (kolaf/handy/scratch_that.py): takes back whichever put text on the screen last, Talon's own phrase or Handy's dictation, by comparing their times; repeat it to go further back |
 | `scratch dictation` | delete the last dictation with Backspace presses (same window, at most 5 minutes old; works in terminals); use it right after dictating |
 | `redo as email` / `message` / `note` / `meeting` / `document` / `formal` / `informal` / `simple` | process the last recording again with that prompt and replace the text |

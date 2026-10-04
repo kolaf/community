@@ -12,6 +12,8 @@ translate that to english: user.kolaf_handy_transform("t_to_en")
 bullet that: user.kolaf_handy_transform("t_bullets")
 summarize that: user.kolaf_handy_transform("t_summary")
 
+# "scratch that" itself is context-aware (scratch_that.py): it takes back whichever came last, a Talon phrase or a Handy
+# dictation. "scratch dictation" below always means Handy's.
 # Undo and redo the last dictation. Like the community "scratch that" this presses Backspace once per character, but only
 # when Handy pasted it in the window that has focus, at most 5 minutes ago; it works in terminals too. Use it right after
 # dictating: Handy cannot see whether you moved the cursor. "redo as" processes the original recording again.

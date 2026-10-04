@@ -24,6 +24,8 @@ model picker: user.kolaf_handy_model_picker()
 # anywhere, on Windows and Linux. Refuses while the newest file is still being written.
 transcribe latest meeting: user.kolaf_handy_transcribe_latest(false)
 transcribe latest recording: user.kolaf_handy_transcribe_latest(true)
+# The same with speaker labels (the audio goes to the post-processing endpoint's diarizing model, see Meetings page).
+transcribe latest meeting with speakers: user.kolaf_handy_transcribe_latest(false, true)
 
 # Start a dictation in a given mode: "dictate as email", "dictate as message", "dictate as note" ... (the names are in
 # prompts.talon-list). Talon is quiet while Handy records; stop with your Handy key. No text is copied first (for that,

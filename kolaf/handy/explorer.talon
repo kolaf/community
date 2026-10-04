@@ -7,3 +7,6 @@ app: windows_file_browser
 transcribe meeting: user.kolaf_handy_transcribe_selected("")
 transcribe meeting norwegian: user.kolaf_handy_transcribe_selected("no")
 transcribe meeting english: user.kolaf_handy_transcribe_selected("en")
+transcribe meeting with speakers: user.kolaf_handy_transcribe_selected("", true)
+transcribe meeting norwegian with speakers: user.kolaf_handy_transcribe_selected("no", true)
+transcribe meeting english with speakers: user.kolaf_handy_transcribe_selected("en", true)

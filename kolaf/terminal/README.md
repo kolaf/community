@@ -144,6 +144,8 @@ Also `anaconda ...` (conda commands: `anaconda environment list`, `anaconda acti
 | `model picker` | numbered list of the downloaded models; say or press a number |
 | `scratch that` / `nope that` | **context-aware** (kolaf/handy/scratch_that.py): takes back whichever put text on the screen last, Talon's own phrase or Handy's dictation, by comparing their times; repeat it to go further back |
 | `transcribe latest meeting` / `transcribe latest recording` | minutes from the newest recording (with the files that belong to it) in the recorder folder set on Handy's Meetings page (OBS Studio...); works anywhere |
+| `transcribe latest meeting with speakers` | same, but the audio is sent to the post-processing endpoint's diarizing model, which labels who speaks (Speaker 1, 2 ...) and the minutes attribute views to them |
+| `transcribe meeting [norwegian|english] with speakers` | (in Explorer) the same for selected files |
 | `transcribe meeting` / `... norwegian` / `... english` | (in Explorer) transcribe the selected audio files or folder and write meeting minutes (Handy's Meetings page shows progress) |
 | `dictate as email` / `message` / `note` / `meeting` / `document` / `formal` / `informal` / `simple` | start a dictation in that mode (stop with your Handy key) |
 | `redo raw` | replace the last dictation by the transcript exactly as the speech model produced it, without formatting |

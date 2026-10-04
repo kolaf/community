@@ -115,6 +115,13 @@ class Actions:
         run_handy(args)
         app.notify(f"Handy: transcribing {len(paths)} item(s)")
 
+    def kolaf_handy_transcribe_latest(single: bool = False):
+        """Write meeting minutes from the latest recording in the recorder's folder (set on Handy's Meetings page)"""
+        args = ["--meeting-latest"]
+        if single:
+            args.append("--meeting-single")
+        run_handy(args)
+
     def kolaf_handy_set_model(name: str):
         """Switch Handy's speech model; name is part of the model's name or id"""
         run_handy(["--set-model", name])

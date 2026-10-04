@@ -19,6 +19,12 @@ summarize that: user.kolaf_handy_transform("t_summary")
 model <user.kolaf_handy_model>: user.kolaf_handy_set_model(kolaf_handy_model)
 model picker: user.kolaf_handy_model_picker()
 
+# Meeting minutes from the latest recording in the recorder's folder (OBS Studio...; set the folder on Handy's Meetings page).
+# "meeting" takes the files that belong together (OBS splits long recordings), "recording" only the newest file. Works
+# anywhere, on Windows and Linux. Refuses while the newest file is still being written.
+transcribe latest meeting: user.kolaf_handy_transcribe_latest(false)
+transcribe latest recording: user.kolaf_handy_transcribe_latest(true)
+
 # Start a dictation in a given mode: "dictate as email", "dictate as message", "dictate as note" ... (the names are in
 # prompts.talon-list). Talon is quiet while Handy records; stop with your Handy key. No text is copied first (for that,
 # "reply to this" and "edit this" copy the selection).

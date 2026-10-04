@@ -19,11 +19,17 @@ summarize that: user.kolaf_handy_transform("t_summary")
 model <user.kolaf_handy_model>: user.kolaf_handy_set_model(kolaf_handy_model)
 model picker: user.kolaf_handy_model_picker()
 
+# Start a dictation in a given mode: "dictate as email", "dictate as message", "dictate as note" ... (the names are in
+# prompts.talon-list). Talon is quiet while Handy records; stop with your Handy key. No text is copied first (for that,
+# "reply to this" and "edit this" copy the selection).
+dictate as <user.kolaf_handy_prompt>: user.kolaf_handy_dictate_as(kolaf_handy_prompt)
+
 # Undo and redo the last dictation. Like the community "scratch that" this presses Backspace once per character, but only
 # when Handy pasted it in the window that has focus, at most 5 minutes ago; it works in terminals too. Use it right after
 # dictating: Handy cannot see whether you moved the cursor. "redo as" processes the original recording again.
 scratch dictation: user.kolaf_handy_scratch()
 redo as <user.kolaf_handy_prompt>: user.kolaf_handy_redo(kolaf_handy_prompt)
+redo raw: user.kolaf_handy_redo("raw")
 
 # Select a message, say this, then dictate the reply. Talon switches itself off while Handy records; stop with your
 # Handy key, and the reply (shaped by the reply prompt, with the message as context) is pasted.

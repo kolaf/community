@@ -143,6 +143,8 @@ Also `anaconda ...` (conda commands: `anaconda environment list`, `anaconda acti
 | `model <name>` | switch Handy's speech model, e.g. `model parakeet`, `model norwegian`, `model whisper small` (edit `handy/models.talon-list`; the model must be downloaded) |
 | `model picker` | numbered list of the downloaded models; say or press a number |
 | `scratch that` / `nope that` | **context-aware** (kolaf/handy/scratch_that.py): takes back whichever put text on the screen last, Talon's own phrase or Handy's dictation, by comparing their times; repeat it to go further back |
+| `dictate as email` / `message` / `note` / `meeting` / `document` / `formal` / `informal` / `simple` | start a dictation in that mode (stop with your Handy key) |
+| `redo raw` | replace the last dictation by the transcript exactly as the speech model produced it, without formatting |
 | `scratch dictation` | delete the last dictation with Backspace presses (same window, at most 5 minutes old; works in terminals); use it right after dictating |
 | `redo as email` / `message` / `note` / `meeting` / `document` / `formal` / `informal` / `simple` | process the last recording again with that prompt and replace the text |
 | `reply to this` | copy the selected message, then dictate the reply (stop with your Handy key); Talon is quiet while Handy records |

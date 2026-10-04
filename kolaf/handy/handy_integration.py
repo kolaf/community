@@ -95,6 +95,10 @@ class Actions:
         actions.sleep("200ms")
         run_handy(["--use-prompt-once", prompt_id, "--toggle-post-process"])
 
+    def kolaf_handy_dictate_as(prompt_id: str):
+        """Start a dictation that uses a given Handy prompt for this one dictation (stop with your Handy key)"""
+        run_handy(["--use-prompt-once", prompt_id, "--toggle-post-process"])
+
     def kolaf_handy_set_model(name: str):
         """Switch Handy's speech model; name is part of the model's name or id"""
         run_handy(["--set-model", name])

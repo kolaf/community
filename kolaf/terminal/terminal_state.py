@@ -18,6 +18,14 @@ ctx.matches = r"""
 app: windows_terminal
 """
 
+# The same lists and tags for terminals on Linux (GNOME Terminal, Konsole, kitty ...: the community's `tag: terminal`).
+# Untested: there is no Linux machine with Talon to try it on.
+ctx_linux = Context()
+ctx_linux.matches = r"""
+os: linux
+tag: terminal
+"""
+
 # Beats the community WSL actions (apps/wsl/wsl.py) in the same tab.
 ctx_wsl = Context()
 ctx_wsl.matches = r"""
@@ -122,7 +130,8 @@ def refresh_mode():
     mode = read_mode()
     if mode != _mode:
         _mode = mode
-        ctx.tags = ["user.kolaf_yazi"] if mode == "yazi" else []
+        for c in (ctx, ctx_linux):
+            c.tags = ["user.kolaf_yazi"] if mode == "yazi" else []
 
 
 def refresh():
@@ -143,9 +152,10 @@ def refresh():
     _cwd, _dirs, _files, jump_paths, _distro = parse_state(text)
     _jump = last_names(jump_paths)
     _jump_paths = paths_by_name(jump_paths)
-    ctx.lists["user.kolaf_dir"] = spoken(_dirs)
-    ctx.lists["user.kolaf_file"] = spoken(_files)
-    ctx.lists["user.kolaf_jump"] = spoken(_jump)
+    for c in (ctx, ctx_linux):
+        c.lists["user.kolaf_dir"] = spoken(_dirs)
+        c.lists["user.kolaf_file"] = spoken(_files)
+        c.lists["user.kolaf_jump"] = spoken(_jump)
     if folders_gui.showing:
         folders_gui.show()
 

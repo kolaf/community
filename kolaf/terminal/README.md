@@ -5,6 +5,8 @@ The commands marked **kolaf** are in this folder; the others come from the commu
 `core/windows_and_tabs`, ...). Nothing here has been verified by voice yet: the files load without errors and the lists
 build, but the spoken behaviour is untested. Report what does not work.
 
+**Linux.** `terminal_linux.talon`, `yazi_linux.talon` and `handy/explorer_linux.talon` repeat the terminal, yazi and Explorer-style commands for terminals and file managers on Linux (the community `tag: terminal` and `tag: user.file_manager`). The shell hook writes to `~/.cache/hv` there. **Untested**: there is no Linux machine with Talon to try it on.
+
 ## Setup that this depends on
 
 - The shell hook `talon-terminal.bash` (dotfiles Ansible role, sourced from `.bashrc`). Open a **new** terminal, or run
@@ -147,6 +149,7 @@ Also `anaconda ...` (conda commands: `anaconda environment list`, `anaconda acti
 | `transcribe latest meeting with speakers` | same, but the audio is sent to the post-processing endpoint's diarizing model, which labels who speaks (Speaker 1, 2 ...) and the minutes attribute views to them |
 | `transcribe meeting [norwegian|english] with speakers` | (in Explorer) the same for selected files |
 | `transcribe meeting` / `... norwegian` / `... english` | (in Explorer) transcribe the selected audio files or folder and write meeting minutes (Handy's Meetings page shows progress) |
+| `language model local` / `language model cloud` | switch the post-processing language model between a llama-server on this computer and the cloud one (the custom provider) |
 | `dictate as email` / `message` / `note` / `meeting` / `document` / `formal` / `informal` / `simple` | start a dictation in that mode (stop with your Handy key) |
 | `redo raw` | replace the last dictation by the transcript exactly as the speech model produced it, without formatting |
 | `scratch dictation` | delete the last dictation with Backspace presses (same window, at most 5 minutes old; works in terminals); use it right after dictating |

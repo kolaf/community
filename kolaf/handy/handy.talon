@@ -18,6 +18,10 @@ summarize that: user.kolaf_handy_transform("t_summary")
 # name or id, and the model must be downloaded). "model picker" shows a numbered list.
 model <user.kolaf_handy_model>: user.kolaf_handy_set_model(kolaf_handy_model)
 model picker: user.kolaf_handy_model_picker()
+# The language model that formats the text: "language model local" (llama-server on this computer, nothing leaves it) or
+# "language model cloud" (the LiteLLM address entered under the custom provider).
+language model local: user.kolaf_handy_set_llm("local")
+language model cloud: user.kolaf_handy_set_llm("cloud")
 
 # Meeting minutes from the latest recording in the recorder's folder (OBS Studio...; set the folder on Handy's Meetings page).
 # "meeting" takes the files that belong together (OBS splits long recordings), "recording" only the newest file. Works

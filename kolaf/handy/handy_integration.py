@@ -130,6 +130,10 @@ class Actions:
         """Switch Handy's speech model; name is part of the model's name or id"""
         run_handy(["--set-model", name])
 
+    def kolaf_handy_set_llm(name: str):
+        """Switch Handy's post-processing language model: local (a llama-server on this computer) or cloud (the LiteLLM)"""
+        run_handy(["--set-llm", name])
+
     def kolaf_handy_model_picker():
         """Open Handy's numbered list of downloaded speech models"""
         run_handy(["--model-picker"])

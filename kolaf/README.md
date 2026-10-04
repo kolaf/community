@@ -22,7 +22,7 @@ merging upstream community never conflicts. Clone this fork into `user/` on any 
   search name, fuzzy jump, zoxide jump, quit yazi ...) is active. No title parsing and no wsl.exe calls. The most recently
   used shell wins when several are open.
 - `handy/`: Talon <-> Handy. Voice transforms ("make that formal|informal|shorter|fuller|clearer", "fix that up", "translate
-  that to norwegian|english", "bullet that", "summarize that") on the selection or the last dictation; "model parakeet|norwegian|picker" (switch the speech model), "scratch that" (made context-aware: Talon's own phrase or Handy's dictation, whichever is newer), "scratch dictation", "redo as email|message|note|formal|...", "edit this" (free-form
+  that to norwegian|english", "bullet that", "summarize that") on the selection or the last dictation; "transcribe meeting" (in Explorer: minutes from the selected audio files), "model parakeet|norwegian|picker" (switch the speech model), "scratch that" (made context-aware: Talon's own phrase or Handy's dictation, whichever is newer), "scratch dictation", "redo as email|message|note|formal|...", "edit this" (free-form
   change by voice, replaces the selection) and "reply to this"
   (copies the selected message and dictates the reply with the reply prompt; stop with your Handy key); and Talon switches its
   speech off while Handy records (`user.kolaf_mute_during_handy`) so dictation is not taken for commands. Handy path:

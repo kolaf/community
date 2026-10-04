@@ -10,7 +10,9 @@ import subprocess
 import time
 from pathlib import Path
 
-from talon import Module, actions, cron, settings
+from talon import Module, actions, app, cron, settings
+
+from user.community.kolaf.hv.hv import _clipboard_paths
 
 mod = Module()
 
@@ -98,6 +100,20 @@ class Actions:
     def kolaf_handy_dictate_as(prompt_id: str):
         """Start a dictation that uses a given Handy prompt for this one dictation (stop with your Handy key)"""
         run_handy(["--use-prompt-once", prompt_id, "--toggle-post-process"])
+
+    def kolaf_handy_transcribe_selected(language: str = ""):
+        """Write meeting minutes from the audio files (or folder) selected in the file manager"""
+        actions.edit.copy()
+        actions.sleep("300ms")
+        paths = _clipboard_paths()
+        if not paths:
+            app.notify("Handy: no files selected")
+            return
+        args = ["--meeting-minutes", ";".join(paths)]
+        if language:
+            args += ["--meeting-language", language]
+        run_handy(args)
+        app.notify(f"Handy: transcribing {len(paths)} item(s)")
 
     def kolaf_handy_set_model(name: str):
         """Switch Handy's speech model; name is part of the model's name or id"""

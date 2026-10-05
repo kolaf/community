@@ -22,11 +22,12 @@ merging upstream community never conflicts. Clone this fork into `user/` on any 
   search name, fuzzy jump, zoxide jump, quit yazi ...) is active. No title parsing and no wsl.exe calls. The most recently
   used shell wins when several are open.
 - `handy/`: Talon <-> Handy. Voice transforms ("make that formal|informal|shorter|fuller|clearer", "fix that up", "translate
-  that to norwegian|english", "bullet that", "summarize that") on the selection or the last dictation; "transcribe latest meeting" (newest OBS recording and its parts), "transcribe meeting" (in Explorer: minutes from the selected audio files), "model parakeet|norwegian|picker" (switch the speech model), "scratch that" (made context-aware: Talon's own phrase or Handy's dictation, whichever is newer), "scratch dictation", "redo as email|message|note|formal|...", "edit this" (free-form
+  that to norwegian|english", "bullet that", "summarize that") on the selection or the last dictation; "transcribe latest meeting" (newest OBS recording and its parts; add "with speakers" for speaker labels), "language model local|cloud" (switch the post-processing language model), "transcribe meeting" (in Explorer: minutes from the selected audio files), "model parakeet|norwegian|picker" (switch the speech model), "scratch that" (made context-aware: Talon's own phrase or Handy's dictation, whichever is newer), "scratch dictation", "redo as email|message|note|formal|...", "edit this" (free-form
   change by voice, replaces the selection) and "reply to this"
   (copies the selected message and dictates the reply with the reply prompt; stop with your Handy key); and Talon switches its
   speech off while Handy records (`user.kolaf_mute_during_handy`) so dictation is not taken for commands. Handy path:
   `user.kolaf_handy_path` (default `D:/Handy/handy.exe`).
+- Linux: `terminal/terminal_linux.talon`, `terminal/yazi_linux.talon` and `handy/explorer_linux.talon` repeat the commands for Linux terminals and file managers. Untested (no Linux machine with Talon).
 - `handy-bridge/`: Talon commands for Handy (one key that starts or stops a dictation and mutes Talon, language and
   prompt commands). **Disabled** (`*.disabled`) because it is untested and mutes Talon if Handy cannot be started.
   To enable: rename both files (drop `.disabled`) and set the Handy path, e.g. in a `.talon` file:

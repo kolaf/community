@@ -131,7 +131,7 @@ class Actions:
         run_handy(["--set-model", name])
 
     def kolaf_handy_set_llm(name: str):
-        """Switch Handy's post-processing language model: local (a llama-server on this computer) or cloud (the LiteLLM)"""
+        """Switch Handy's post-processing language model: local (a llama-server on this computer) or cloud (the hosted gateway)"""
         run_handy(["--set-llm", name])
 
     def kolaf_handy_model_picker():

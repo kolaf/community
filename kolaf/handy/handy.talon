@@ -19,7 +19,7 @@ summarize that: user.kolaf_handy_transform("t_summary")
 model <user.kolaf_handy_model>: user.kolaf_handy_set_model(kolaf_handy_model)
 model picker: user.kolaf_handy_model_picker()
 # The language model that formats the text: "language model local" (llama-server on this computer, nothing leaves it) or
-# "language model cloud" (the LiteLLM address entered under the custom provider).
+# "language model cloud" (the hosted gateway entered under the custom provider).
 language model local: user.kolaf_handy_set_llm("local")
 language model cloud: user.kolaf_handy_set_llm("cloud")
 

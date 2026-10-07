@@ -30,6 +30,10 @@ transcribe latest meeting: user.kolaf_handy_transcribe_latest(false)
 transcribe latest recording: user.kolaf_handy_transcribe_latest(true)
 # The same with speaker labels (the audio goes to the post-processing endpoint's diarizing model, see Meetings page).
 transcribe latest meeting with speakers: user.kolaf_handy_transcribe_latest(false, true)
+# In the context of a SilverBullet project (set up on Handy's Meetings page): "transcribe latest meeting for saga". The name only has to be
+# unambiguous; Handy tells you the project names if it does not match one.
+transcribe latest meeting for <user.text>$: user.kolaf_handy_transcribe_latest(false, false, text)
+transcribe latest meeting with speakers for <user.text>$: user.kolaf_handy_transcribe_latest(false, true, text)
 
 # Start a dictation in a given mode: "dictate as email", "dictate as message", "dictate as note" ... (the names are in
 # prompts.talon-list). Talon is quiet while Handy records; stop with your Handy key. No text is copied first (for that,

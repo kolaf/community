@@ -101,7 +101,7 @@ class Actions:
         """Start a dictation that uses a given Handy prompt for this one dictation (stop with your Handy key)"""
         run_handy(["--use-prompt-once", prompt_id, "--toggle-post-process"])
 
-    def kolaf_handy_transcribe_selected(language: str = "", speakers: bool = False):
+    def kolaf_handy_transcribe_selected(language: str = "", speakers: bool = False, project: str = ""):
         """Write meeting minutes from the audio files (or folder) selected in the file manager"""
         actions.edit.copy()
         actions.sleep("300ms")
@@ -114,16 +114,20 @@ class Actions:
             args += ["--meeting-language", language]
         if speakers:
             args.append("--meeting-speakers")
+        if project:
+            args += ["--meeting-project", project]
         run_handy(args)
         app.notify(f"Handy: transcribing {len(paths)} item(s)")
 
-    def kolaf_handy_transcribe_latest(single: bool = False, speakers: bool = False):
+    def kolaf_handy_transcribe_latest(single: bool = False, speakers: bool = False, project: str = ""):
         """Write meeting minutes from the latest recording in the recorder's folder (set on Handy's Meetings page)"""
         args = ["--meeting-latest"]
         if single:
             args.append("--meeting-single")
         if speakers:
             args.append("--meeting-speakers")
+        if project:
+            args += ["--meeting-project", project]
         run_handy(args)
 
     def kolaf_handy_set_model(name: str):

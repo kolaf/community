@@ -93,8 +93,12 @@ class Actions:
 
     def kolaf_handy_dictate_with(prompt_id: str):
         """Copy the selection, then dictate with a Handy prompt for this one dictation (stop with your Handy key)"""
-        actions.edit.copy()
-        actions.sleep("200ms")
+        # edit.selected_text copies and tells whether anything was copied (empty: nothing selected, or the app did not copy)
+        text = actions.edit.selected_text()
+        if not text.strip():
+            app.notify("Handy: nothing was copied. Select the text first (a SilverBullet page must have focus in its editor).")
+            return
+        app.notify(f"Handy: {len(text)} characters copied. Speak the change, then stop with your Handy key.")
         run_handy(["--use-prompt-once", prompt_id, "--toggle-post-process"])
 
     def kolaf_handy_dictate_as(prompt_id: str):

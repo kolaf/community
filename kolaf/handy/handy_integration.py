@@ -130,6 +130,10 @@ class Actions:
             args += ["--meeting-project", project]
         run_handy(args)
 
+    def kolaf_handy_update_journal():
+        """Start a dictation that is added to today's SilverBullet journal page instead of being pasted (stop with your Handy key)"""
+        run_handy(["--update-journal", "--toggle-post-process"])
+
     def kolaf_handy_set_model(name: str):
         """Switch Handy's speech model; name is part of the model's name or id"""
         run_handy(["--set-model", name])

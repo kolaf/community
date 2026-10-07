@@ -35,6 +35,10 @@ transcribe latest meeting with speakers: user.kolaf_handy_transcribe_latest(fals
 transcribe latest meeting for <user.text>$: user.kolaf_handy_transcribe_latest(false, false, text)
 transcribe latest meeting with speakers for <user.text>$: user.kolaf_handy_transcribe_latest(false, true, text)
 
+# "update journal": the next dictation is added to today's journal page in SilverBullet (set up on Handy's Meetings page), in the style of the page
+# and with links to the pages and tags that exist there. Talk about what you did and what should happen next; stop with your Handy key.
+update journal: user.kolaf_handy_update_journal()
+
 # Start a dictation in a given mode: "dictate as email", "dictate as message", "dictate as note" ... (the names are in
 # prompts.talon-list). Talon is quiet while Handy records; stop with your Handy key. No text is copied first (for that,
 # "reply to this" and "edit this" copy the selection).

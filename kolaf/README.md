@@ -28,6 +28,7 @@ merging upstream community never conflicts. Clone this fork into `user/` on any 
   speech off while Handy records (`user.kolaf_mute_during_handy`) so dictation is not taken for commands. Handy path:
   `user.kolaf_handy_path` (default `D:/Handy/handy.exe`).
 - Linux: `terminal/terminal_linux.talon`, `terminal/yazi_linux.talon` and `handy/explorer_linux.talon` repeat the commands for Linux terminals and file managers. Untested (no Linux machine with Talon).
+- `silverbullet/`: voice commands for SilverBullet in the browser, all starting with "silver" (page picker, command palette, journal, formatting, outline, tasks); see `silverbullet/README.md`.
 - `handy-bridge/`: Talon commands for Handy (one key that starts or stops a dictation and mutes Talon, language and
   prompt commands). **Disabled** (`*.disabled`) because it is untested and mutes Talon if Handy cannot be started.
   To enable: rename both files (drop `.disabled`) and set the Handy path, e.g. in a `.talon` file:
